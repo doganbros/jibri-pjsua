@@ -23,7 +23,7 @@ trap "_term STOP" STOP
 
 
 # start ffmpeg cross capturing X displays to video devices
-/usr/bin/ffmpeg -re -f x11grab -r 60 -s 1280x720 -i :0 -f x11grab -r 60 -s 1280x720 -i :1 \
+/usr/bin/ffmpeg -draw_mouse 0 -re -f x11grab -r 60 -s 1280x720 -i :0 -draw_mouse 0 -f x11grab -r 60 -s 1280x720 -i :1 \
   -map 0 -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video1 \
   -map 1 -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0 > /tmp/ffmpeg-jibri.log &
 
